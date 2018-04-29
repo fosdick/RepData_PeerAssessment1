@@ -47,6 +47,9 @@ head(data, 3)
 ## 3    NA 2012-10-01       10
 ```
 
+
+\
+\
 ## What is mean total number of steps taken per day?
 
 
@@ -74,6 +77,7 @@ hist(totalSteps$steps, xlab="steps",ylab="Frequency",col="skyblue",border="red",
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-7-1.png)<!-- -->
+
 *Calculate and report the mean and median of the total number of steps taken per day*
 
 
@@ -93,6 +97,9 @@ median(totalSteps$steps) ## get the median
 ```
 ## [1] 10765
 ```
+
+
+
 ## What is the average daily activity pattern?
 
 *Make a time series plot (i.e. 𝚝𝚢𝚙𝚎 = "𝚕") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)*
@@ -112,14 +119,26 @@ axis(side=1, at=seq(0, 2400, by=500))
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-11-1.png)<!-- -->
-*Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?*
+
+?*Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?*
+
+Max steps taken at interval
+
+```r
+int = which.max(stepsInterval$steps)
+```
+Value at this interval
 
 ```r
 colMax <- max(stepsInterval$steps)
-int = which.max(stepsInterval$steps)
 ```
 Max steps taken at interval `int` with `colMax` average steps taken. apparently this person does 
 a lot of walking around `data[104,]$interval` AM.
+
+
+
+
+
 
 ## Imputing missing values
 
@@ -174,7 +193,7 @@ hist(totalSteps$steps, xlab="steps",ylab="Frequency",col="skyblue",border="red",
      main="Steps per day no NA's")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-17-1.png)<!-- -->
+![](PA1_template_files/figure-html/unnamed-chunk-18-1.png)<!-- -->
 
 *What is the impact of imputing missing data on the estimates of the total daily number of steps?*
 
@@ -183,11 +202,17 @@ par(mfrow = c(1, 2), mar = c(4, 4, 2, 1))
 hist(totalSteps$steps, xlab="steps",ylab="Frequency",col="skyblue",border="red",
      main="Steps per day no NA's")
 hist(imp_steps$steps, xlab="steps",ylab="Frequency",col="skyblue",border="red",
-     main="Steps per day with Imputed values")
+     main="Steps per day (Imputed)")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-18-1.png)<!-- -->
+![](PA1_template_files/figure-html/unnamed-chunk-19-1.png)<!-- -->
+
 **Higher frequency for steps during the day time**
+
+
+
+
+
 
 ## Are there differences in activity patterns between weekdays and weekends?
 
@@ -244,6 +269,7 @@ str(weekEnd)
 ##  $ minute  : num  0 5 10 15 20 25 30 35 40 45 ...
 ##  $ day_type: Factor w/ 2 levels "Weekday","Weekend": 2 2 2 2 2 2 2 2 2 2 ...
 ```
+
 *Make a panel plot containing a time series plot (i.e. 𝚝𝚢𝚙𝚎 = "𝚕") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). See the README file in the GitHub repository to see an example of what this plot should look like using simulated data.*
 
 
@@ -262,6 +288,7 @@ plot(wkendSteps$interval, wkendSteps$steps, type="l", col=4, main="WeekEnd Steps
      xlab="Time of Day (interval)", ylab="Average Number of Steps")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-22-1.png)<!-- -->
+![](PA1_template_files/figure-html/unnamed-chunk-23-1.png)<!-- -->
+
 
 **We notice that this person walks more often throughout the weekend.  Perhaps they exercise in the morning and sit at a desk during the day?**

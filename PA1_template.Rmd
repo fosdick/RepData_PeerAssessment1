@@ -25,6 +25,9 @@ Lets checkout the data a bit
 head(data, 3)
 ```
 
+
+\
+\
 ## What is mean total number of steps taken per day?
 
 ```{r}
@@ -56,6 +59,9 @@ mean(totalSteps$steps) ## get the mean
 ```{r}
 median(totalSteps$steps) ## get the median
 ```
+
+
+
 ## What is the average daily activity pattern?
 
 *Make a time series plot (i.e. 𝚝𝚢𝚙𝚎 = "𝚕") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)*
@@ -72,7 +78,7 @@ plot(stepsInterval$interval, stepsInterval$steps, type="l", col=3, main="Steps b
 axis(side=1, at=seq(0, 2400, by=500))
 ```
 
-*Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?*
+?*Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?*
 
 Max steps taken at interval
 ```{r}
@@ -84,6 +90,11 @@ colMax <- max(stepsInterval$steps)
 ```
 Max steps taken at interval `int` with `colMax` average steps taken. apparently this person does 
 a lot of walking around `data[104,]$interval` AM.
+
+
+
+
+
 
 ## Imputing missing values
 
@@ -128,9 +139,15 @@ par(mfrow = c(1, 2), mar = c(4, 4, 2, 1))
 hist(totalSteps$steps, xlab="steps",ylab="Frequency",col="skyblue",border="red",
      main="Steps per day no NA's")
 hist(imp_steps$steps, xlab="steps",ylab="Frequency",col="skyblue",border="red",
-     main="Steps per day with Imputed values")
+     main="Steps per day (Imputed)")
 ```
+
 **Higher frequency for steps during the day time**
+
+
+
+
+
 
 ## Are there differences in activity patterns between weekdays and weekends?
 
@@ -162,6 +179,7 @@ weekEnd <- subset(dataNoNa, day_type == "Weekend")
 str(workWeek)
 str(weekEnd)
 ```
+
 *Make a panel plot containing a time series plot (i.e. 𝚝𝚢𝚙𝚎 = "𝚕") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). See the README file in the GitHub repository to see an example of what this plot should look like using simulated data.*
 
 
@@ -177,5 +195,6 @@ plot(wrkWSteps$interval, wrkWSteps$steps, type="l", col=4, main="WeekDay Steps",
 plot(wkendSteps$interval, wkendSteps$steps, type="l", col=4, main="WeekEnd Steps", 
      xlab="Time of Day (interval)", ylab="Average Number of Steps")
 ```
+
 
 **We notice that this person walks more often throughout the weekend.  Perhaps they exercise in the morning and sit at a desk during the day?**
